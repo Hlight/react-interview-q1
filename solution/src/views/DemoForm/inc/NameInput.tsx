@@ -1,17 +1,19 @@
 import { FormControl, InputLabel, Input, FormHelperText } from "@mui/material";
 import { isNameValid } from "../../../mock-api/apis";
 import { ChangeEventHandler, useState } from "react";
-import Spinner from "../../../components/Spinner";
+// import Spinner from "../../../components/Spinner";
 import Progress from "../../../components/Progress";
 
 const NameInput = ({
   enteredName,
   setEnteredName,
   setIsError,
+  setIsNameCheckLoading,
 }: {
   enteredName: string;
   setEnteredName: any;
   setIsError: any;
+  setIsNameCheckLoading: any;
 }) => {
   const [nameError, setNameError] = useState(false);
   const [loading, setLoading] = useState(false);
@@ -19,6 +21,7 @@ const NameInput = ({
   const checkName = async (name: string) => {
     const isValid = await isNameValid(name);
     setLoading(false);
+    setIsNameCheckLoading(false);
     if (!isValid) {
       setNameError(true);
       setIsError(true);
@@ -35,6 +38,7 @@ const NameInput = ({
   > = (event: any) => {
     setNameError(false);
     setLoading(true);
+    setIsNameCheckLoading(true);
     setEnteredName(event.target.value);
     checkName(event.target.value);
   };

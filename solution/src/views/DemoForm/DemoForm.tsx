@@ -25,6 +25,7 @@ const DemoForm = () => {
   const [enteredLocation, setEnteredLocation] = useState<string>("");
   const [enteredData, setEnteredData] = useState<any>([]);
   const [isError, setIsError] = useState(false);
+  const [isNameCheckLoading, setIsNameCheckLoading] = useState(false);
 
   useEffect(() => {
     const getMyLocations = async () => {
@@ -65,6 +66,7 @@ const DemoForm = () => {
           enteredName={enteredName}
           setEnteredName={setEnteredName}
           setIsError={setIsError}
+          setIsNameCheckLoading={setIsNameCheckLoading}
         />
         <LocationSelect
           locations={locations}
@@ -74,7 +76,9 @@ const DemoForm = () => {
         <Button onClick={onClear}>Clear</Button>{" "}
         <Button
           onClick={onAdd}
-          disabled={isError || !enteredName || !enteredLocation}
+          disabled={
+            isError || !enteredName || !enteredLocation || isNameCheckLoading
+          }
         >
           Add
         </Button>
