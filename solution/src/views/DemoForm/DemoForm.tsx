@@ -26,6 +26,7 @@ const DemoForm = () => {
   const [enteredData, setEnteredData] = useState<any>([]);
   const [isError, setIsError] = useState(false);
   const [isNameCheckLoading, setIsNameCheckLoading] = useState(true);
+  const [nameError, setNameError] = useState(false);
 
   useEffect(() => {
     const getMyLocations = async () => {
@@ -41,6 +42,7 @@ const DemoForm = () => {
     setEnteredLocation("");
     // setEnteredData([]);
     setIsError(false);
+    setNameError(false);
   };
 
   const onAdd = () => {
@@ -74,6 +76,8 @@ const DemoForm = () => {
           enteredName={enteredName}
           setEnteredName={setEnteredName}
           setIsError={setIsError}
+          nameError={nameError}
+          setNameError={setNameError}
           setIsNameCheckLoading={setIsNameCheckLoading}
         />
         <LocationSelect

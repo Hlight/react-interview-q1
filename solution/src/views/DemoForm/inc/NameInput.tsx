@@ -9,13 +9,16 @@ const NameInput = ({
   setEnteredName,
   setIsError,
   setIsNameCheckLoading,
+  nameError,
+  setNameError,
 }: {
   enteredName: string;
   setEnteredName: any;
   setIsError: any;
   setIsNameCheckLoading: any;
+  nameError: boolean;
+  setNameError: any;
 }) => {
-  const [nameError, setNameError] = useState(false);
   const [loading, setLoading] = useState(false);
 
   const checkName = async (name: string) => {
