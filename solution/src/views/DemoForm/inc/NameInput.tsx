@@ -1,6 +1,8 @@
 import { FormControl, InputLabel, Input, FormHelperText } from "@mui/material";
 import { isNameValid } from "../../../mock-api/apis";
 import { ChangeEventHandler, useState } from "react";
+import Spinner from "../../../components/Spinner";
+import Progress from "../../../components/Progress";
 
 const NameInput = ({
   enteredName,
@@ -21,7 +23,7 @@ const NameInput = ({
       setNameError(true);
       setIsError(true);
     } else {
-      setNameError(false);
+      // setNameError(false);
       setIsError(false);
     }
 
@@ -33,19 +35,19 @@ const NameInput = ({
   > = (event: any) => {
     setNameError(false);
     setLoading(true);
-    checkName(event.target.value);
     setEnteredName(event.target.value);
+    checkName(event.target.value);
   };
   return (
     <FormControl fullWidth sx={{ paddingBottom: "1rem" }}>
-      <InputLabel htmlFor="my-name">Name</InputLabel>
+      <InputLabel htmlFor="my-name">Name{loading && <Progress />}</InputLabel>
       <Input
         id="my-name"
         aria-describedby="my-helper-text"
         onChange={handleChange}
         value={enteredName}
       />
-      {loading && "..."}
+
       {nameError && (
         <FormHelperText id="my-helper-text" sx={{ color: "red" }}>
           This name has already been taken.
