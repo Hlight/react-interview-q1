@@ -1,4 +1,4 @@
-import { Button, styled } from "@mui/material";
+import { Box, Button, styled } from "@mui/material";
 import NameInput from "./inc/NameInput";
 import LocationSelect from "./inc/LocationSelect";
 import { useEffect, useState } from "react";
@@ -7,6 +7,16 @@ import AddedNameLocationDataTable from "./inc/AddedNameLocationDataTable";
 
 const Div = styled("div")`
   margin: 1rem;
+  background: rgb(169, 250, 251);
+  background: linear-gradient(
+    0deg,
+    rgba(169, 250, 251, 1) 0%,
+    rgba(222, 237, 236, 1) 100%
+  );
+  input,
+  .MuiInputBase-root {
+    background: white;
+  }
 `;
 
 const DemoForm = () => {
@@ -28,7 +38,7 @@ const DemoForm = () => {
   const onClear = () => {
     setEnteredName("");
     setEnteredLocation("");
-    setEnteredData([]);
+    // setEnteredData([]);
   };
 
   const onAdd = () => {
@@ -39,12 +49,17 @@ const DemoForm = () => {
       ];
       return newData;
     });
+    onClear();
   };
 
   return (
     <>
       <Div
-        sx={{ border: "4px solid blue", borderRadius: "2rem", padding: "1rem" }}
+        sx={{
+          border: "4px solid #a9fafb",
+          borderRadius: "2rem",
+          padding: "1rem",
+        }}
       >
         <NameInput
           enteredName={enteredName}
@@ -65,7 +80,9 @@ const DemoForm = () => {
         </Button>
       </Div>
 
-      <AddedNameLocationDataTable enteredData={enteredData} />
+      <Box sx={{ padding: "1rem 4rem" }}>
+        <AddedNameLocationDataTable enteredData={enteredData} />
+      </Box>
     </>
   );
 };
