@@ -25,7 +25,7 @@ const DemoForm = () => {
   const [enteredLocation, setEnteredLocation] = useState<string>("");
   const [enteredData, setEnteredData] = useState<any>([]);
   const [isError, setIsError] = useState(false);
-  const [isNameCheckLoading, setIsNameCheckLoading] = useState(false);
+  const [isNameCheckLoading, setIsNameCheckLoading] = useState(true);
 
   useEffect(() => {
     const getMyLocations = async () => {
@@ -40,6 +40,7 @@ const DemoForm = () => {
     setEnteredName("");
     setEnteredLocation("");
     // setEnteredData([]);
+    setIsError(false);
   };
 
   const onAdd = () => {
@@ -51,6 +52,13 @@ const DemoForm = () => {
       return newData;
     });
     onClear();
+  };
+
+  const isAddDisabled = () => {
+    console.log(
+      `${isError} || ${isNameCheckLoading} || ${!enteredName} || ${!enteredLocation}`
+    );
+    return isError || isNameCheckLoading || !enteredName || !enteredLocation;
   };
 
   return (
@@ -74,12 +82,7 @@ const DemoForm = () => {
           enteredLocation={enteredLocation}
         />
         <Button onClick={onClear}>Clear</Button>{" "}
-        <Button
-          onClick={onAdd}
-          disabled={
-            isError || !enteredName || !enteredLocation || isNameCheckLoading
-          }
-        >
+        <Button onClick={onAdd} disabled={isAddDisabled()}>
           Add
         </Button>
       </Div>

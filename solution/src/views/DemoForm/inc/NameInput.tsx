@@ -27,7 +27,7 @@ const NameInput = ({
       setIsError(true);
     } else {
       // setNameError(false);
-      setIsError(false);
+      // setIsError(false);
     }
 
     return isValid;
@@ -36,6 +36,7 @@ const NameInput = ({
   const handleChange: ChangeEventHandler<
     HTMLInputElement | HTMLTextAreaElement
   > = (event: any) => {
+    setIsError(false);
     setNameError(false);
     setLoading(true);
     setIsNameCheckLoading(true);
